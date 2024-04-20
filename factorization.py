@@ -21,7 +21,8 @@ def calculate_private_key(e, totient):
     end_time = time.perf_counter()
     runtime = (end_time - start_time)*1000
     
-    return x % totient , runtime 
+    return x % totient , runtime  #to ensure that the private key  d  falls within the range of 0 to  totient - 1 . 
+#This is important because the private key should be a positive integer less than the totient value in order to be a valid private key in RSA encryption. 
 
 def factorize(n):
     factors = []

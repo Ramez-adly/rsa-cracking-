@@ -54,15 +54,4 @@ if len(factors) == 2:
     print("e:", e)
     print("d:", d)
     print("the runtime in ms is  ", runtime)  
-    # Message Encryption
-    message = input("Enter the message to encrypt: ")
-    message_encoded = [ord(ch) for ch in message]
-    ciphertext = [pow(ch, e, n) for ch in message_encoded]
-    print("Encrypted Message:", ciphertext)
 
-    # Message Decryption
-    message_decoded = [pow(ch, d, n) for ch in ciphertext]
-    decrypted_message = "".join(chr(ch) for ch in message_decoded)
-    print("Decrypted Message:", decrypted_message)
-else:
-    print("N is not a product of exactly two prime numbers.")

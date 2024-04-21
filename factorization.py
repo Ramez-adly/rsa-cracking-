@@ -11,17 +11,14 @@ def extended_gcd(a, b):
     return a, x0, y0
 
 def calculate_private_key(e, totient):
-    start_time = time.perf_counter()
     
     gcd, x, y = extended_gcd(e, totient)
     
     if gcd != 1:
         raise ValueError("The public key is not valid.")
     
-    end_time = time.perf_counter()
-    runtime = (end_time - start_time)*1000
     
-    return x % totient , runtime  #to ensure that the private key  d  falls within the range of 0 to  totient - 1 . 
+    return x % phi_N         #to ensure that the private key  d  falls within the range of 0 to  totient - 1 . 
 #This is important because the private key should be a positive integer less than the totient value in order to be a valid private key in RSA encryption. 
 
 def factorize(n):
@@ -40,13 +37,15 @@ def factorize(n):
 # RSA parameters
 n = int(input("Enter the n of the public key: "))
 e = int(input("Enter the e of the public key: "))
-
+start_time=time.perf_counter()
 factors = factorize(n)
 
 if len(factors) == 2:
     p, q = factors
     phi_N = (p - 1) * (q - 1)
-    d, runtime = calculate_private_key(e, phi_N)  
+    d = calculate_private_key(e, phi_N) 
+    end_time = time.perf_counter()
+    runtime = (end_time - start_time)*1000
     print("RSA Parameters:")
     print("p:", p)
     print("q:", q)
@@ -55,4 +54,4 @@ if len(factors) == 2:
     print("e:", e)
     print("d:", d)
     print("the runtime in ms is  ", runtime)  
-
+    

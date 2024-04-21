@@ -1,7 +1,7 @@
 import time
 import math
 
-def factorize(n):
+def factorize(n):              #factorisation of the n 
     factors = []
     while n % 2 == 0:
         factors.append(2)
@@ -14,9 +14,9 @@ def factorize(n):
         factors.append(n)
     return factors
 
-def brute_force_decrypt(e, n, encrypted_message):
+def brute_force_decrypt(e, n, encrypted_message):       #brute force funtion 
     start_time = time.perf_counter()
-    factors = factorize(n)  # Prime factors of n
+    factors = factorize(n)  # Prime factors of n (p and q )
     if len(factors) != 2:
         print("Decryption failed: Public key n requires two prime factors.")
         return None
@@ -28,7 +28,7 @@ def brute_force_decrypt(e, n, encrypted_message):
 
     while True:
         iterations += 1
-        if (e * d) % phi_n == 1:
+        if (e * d) % phi_n == 1:          #condtion to be met 
             end_time = time.perf_counter()
             runtime = (end_time - start_time) * 1000
 
